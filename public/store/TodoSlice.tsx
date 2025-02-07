@@ -241,6 +241,7 @@ export const useTodoStore = create<todoStore>()(
       },
       // NOTE: This is for the whole task states
       updateTask: async (todo, actionType, userId, files) => {
+        set({ loading: true });
         const historyObj = {
           actionType: `task ${actionType} at`,
           time: Date.now(),
@@ -269,8 +270,10 @@ export const useTodoStore = create<todoStore>()(
         if (!error) {
           toast("your todo is updated");
           get().fetchTodos(userId);
+          set({ loading: false });
           return true;
         }
+        set({ loading: false });
         return false;
       },
       // NOTE: filter tasks, if task title includes search string

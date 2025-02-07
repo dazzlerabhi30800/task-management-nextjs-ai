@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "../../ui/button";
 import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
@@ -15,6 +15,7 @@ import useResize from "@/lib/useResize";
 import { Loader2Icon, X } from "lucide-react";
 import FilePreview from "@/app/list/_components/FilePreview";
 import { toast } from "sonner";
+import { useDropzone } from "react-dropzone";
 
 const TaskCreateDialog = () => {
   const { setShowTaskDialog, showComp, setShowComp, showTaskDialog } =
@@ -118,7 +119,6 @@ const TaskCreateDialog = () => {
       setFiles([...e.target.files]);
     }
   };
-  
 
   // Ref for todo input wrapper
   const todoRef = useRef<HTMLDivElement | null>(null);
@@ -128,6 +128,28 @@ const TaskCreateDialog = () => {
     if (!showTaskDialog || !todoRef.current) return;
     todoRef.current.scrollTo(0, 0);
   }, [showTaskDialog]);
+
+  // Handle Drop on drop-zone
+  const onDrop = useCallback((acceptedFiles: any) => {
+    if (files.length > 3) return;
+    // setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
+    setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
+  }, []);
+
+  //NOTE: drag & drop zones variables
+  const { getRootProps, getInputProps, fileRejections } = useDropzone({
+    onDrop,
+    multiple: true,
+    maxFiles:
+      todoInfo.fileUrl.length === 0 && files.length === 0
+        ? 3
+        : Math.abs(todoInfo.fileUrl.length - files.length),
+    accept: {
+      "image/jpeg": [],
+      "image/png": [],
+      "application/pdf": [],
+    },
+  });
 
   return (
     <div
@@ -242,15 +264,19 @@ const TaskCreateDialog = () => {
                 </div>
               </div>
               {todoInfo.fileUrl.length < 3 && (
-                <div className="mt-8">
+                <div
+                  {...getRootProps()}
+                  className="mt-8 h-40 border-2 border-dashed border-red-400 flex justify-center items-center px-10"
+                >
                   {/* NOTE: File Upload */}
                   <input
+                    {...getInputProps()}
+                    id="taskFile"
+                    className="hidden"
                     multiple
                     onChange={handleFileUpload}
                     type="file"
                     accept="image/*,application/pdf"
-                    id="taskFile"
-                    className="hidden"
                   />
                   <label
                     htmlFor="taskFile"
