@@ -76,20 +76,20 @@ interface todoStore {
     todo: todo,
     userId: string,
     type: string,
-    file: Array<File>
+    file: Array<File>,
   ) => Promise<boolean>;
   fetchTodos: (userId: string) => void;
   updateTodo: (
     todo: todo,
     actionType: string,
     value: string,
-    userId: string
+    userId: string,
   ) => void;
   updateTask: (
     todo: todo,
     actionType: string,
     userId: string,
-    files: Array<File>
+    files: Array<File>,
   ) => Promise<boolean>;
   filterTodos: (filterKey: string) => void;
   sortTodos: (order: string) => void;
@@ -98,7 +98,7 @@ interface todoStore {
   performMultipleActions: (
     type: string,
     userId: string,
-    status?: string
+    status?: string,
   ) => void;
 }
 
@@ -205,9 +205,8 @@ export const useTodoStore = create<todoStore>()(
       // NOTE: fetch todos when user is logged in
       fetchTodos: async (userId) => {
         set({ loading: true });
-        const { formattedTodos, todoPrompt }: any = await formatTodosByColumn(
-          userId
-        );
+        const { formattedTodos, todoPrompt }: any =
+          await formatTodosByColumn(userId);
         set({
           todos: formattedTodos as todos,
           dummyTodos: formattedTodos as todos,
@@ -284,7 +283,7 @@ export const useTodoStore = create<todoStore>()(
             return item;
           } else {
             let filteredTodos = item.todos.filter(
-              (item) => item.status === filterKey
+              (item) => item.status === filterKey,
             );
             return { ...item, todos: filteredTodos };
           }
@@ -313,7 +312,7 @@ export const useTodoStore = create<todoStore>()(
         set({ todoSearchString: searchString });
         const newTodos = [...get().dummyTodos].map((item) => {
           const filterTodos = item.todos.filter((item) =>
-            item.text.toLowerCase().includes(searchString.toLowerCase())
+            item.text.toLowerCase().includes(searchString.toLowerCase()),
           );
           return { ...item, todos: filterTodos };
         });
@@ -349,7 +348,7 @@ export const useTodoStore = create<todoStore>()(
       performMultipleActions: async (
         type: string,
         userId: string,
-        status?: string
+        status?: string,
       ) => {
         const todos = [...get().multipleActionData];
         for (const todo of todos) {
@@ -389,6 +388,6 @@ export const useTodoStore = create<todoStore>()(
         todos: state.todos,
         aiTodoPrompt: state.aiTodoPrompt,
       }),
-    }
-  )
+    },
+  ),
 );

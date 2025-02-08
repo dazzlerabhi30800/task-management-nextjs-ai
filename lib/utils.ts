@@ -67,7 +67,7 @@ export async function compressFile(file: File, width: number) {
 
 export const checkFilterDate = (
   todoDate: Date | string,
-  filterDate: Date | string
+  filterDate: Date | string,
 ) => {
   if (!todoDate || !filterDate) return;
   const date1 = new Date(todoDate);

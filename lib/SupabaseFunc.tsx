@@ -16,7 +16,7 @@ export const getTodos = async (id: string) => {
 
 // NOTE: to generate ai prompt from the tasks
 export const getAiPrompt = async (todoPrompt: string) => {
-  if (!todoPrompt || todoPrompt.length > 0)
+  if (!todoPrompt || todoPrompt.length === 0)
     return "There are no task dued for today";
   const result = await axios.post("/api/get-todo", {
     prompt: todoPrompt,
