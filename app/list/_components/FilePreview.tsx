@@ -71,11 +71,10 @@ const FilePreview = ({
                 src={file?.fileLink}
                 alt={file.path}
                 priority
-                // loader={<div>Spinner</div>}
-                placeholder="blur"
                 width={200}
                 height={120}
-                blurDataURL="data:..."
+                placeholder="blur"
+                blurDataURL="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
                 className="h-full w-full md:w-[300px] object-cover rounded-md  group-hover:grayscale-[0.8] transition-all"
               />
             </Link>
