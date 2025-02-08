@@ -29,11 +29,12 @@ export function SelectCategory({ width, type }: category) {
       filterTodos(category);
     }
   }, [category]);
+
+  React.useEffect(() => {
+    setCategory(todoInfo.status);
+  }, [todoInfo.status]);
   return (
-    <Select
-      defaultValue={category}
-      onValueChange={(value) => setCategory(value)}
-    >
+    <Select value={category} onValueChange={(value) => setCategory(value)}>
       <SelectTrigger style={{ width: width ? width : 100 }}>
         <SelectValue placeholder="Category" />
       </SelectTrigger>
