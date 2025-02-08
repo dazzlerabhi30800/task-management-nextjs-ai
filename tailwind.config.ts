@@ -56,8 +56,9 @@ export default {
         },
       },
       backgroundImage: {
-        bgMobile: "url('/mobile-bg.png')",
-        bgLarge: "url('/bg.png')",
+        // bgMobile: "url('/mobile-bg.png')",
+        // bgMobile: "url('/mobile-bg.png')",
+        bgLarge: "url('/goku.png')",
       },
       borderRadius: {
         lg: "var(--radius)",

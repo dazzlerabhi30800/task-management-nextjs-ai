@@ -16,8 +16,9 @@ import { toast } from "sonner";
 const Header = () => {
   const { user, setUser } = useUserStore((state) => state);
   const { setShowTaskDialog } = useActionStore((state) => state);
-  const { setTodos, filterTodosBySearchString, setTodoInfoInitial } =
-    useTodoStore((state) => state);
+  const { filterTodosBySearchString, setTodoInfoInitial } = useTodoStore(
+    (state) => state,
+  );
   const [searchString, setSearchString] = React.useState<string>("");
   const path = usePathname();
   const router = useRouter();
@@ -25,8 +26,6 @@ const Header = () => {
     googleLogout();
     router.push("/");
     setUser(null);
-    setTodos([]);
-    setTodoInfoInitial();
     toast.success("You've been logged out!!");
   };
 

@@ -22,7 +22,6 @@ export default function Hero() {
         "https://www.googleapis.com/oauth2/v3/userinfo",
         { headers: { Authorization: `Bearer ${tokenResponse?.access_token}` } },
       );
-      console.log("hello");
       const newUser = {
         name: userInfo?.data.name as string,
         email: userInfo?.data.email as string,
@@ -37,32 +36,35 @@ export default function Hero() {
   });
 
   return (
-    <div className="flex flex-col gap-3 items-center justify-center min-h-screen p-10 font-[family-name:var(--font-geist-sans)] text-center bg-bgMobile md:bg-bgLarge bg-center bg-cover bg-no-repeat">
-      <Image
-        src={"/logo.png"}
-        alt="Task Buddy"
-        className="object-cover"
-        style={{ width: "auto", height: "auto" }}
-        width={200}
-        height={100}
-      />
-      <p className="text-sm md:text-base">
-        Streamline your workflow and track progress effortlessly with our
-        all-in-one task management app.
-      </p>
-      {user ? (
-        <h2 className="bg-primary text-white rounded-sm font-bold p-3 px-8">
-          Welcome Back, {user.name}
-        </h2>
-      ) : (
-        <Button
-          onClick={() => handleLogin()}
-          className="mt-5 font-medium text-lg h-12"
-        >
-          <Image src={"/google.svg"} alt="Google" width={18} height={18} />
-          Continue with Google
-        </Button>
-      )}
+    <div className="flex flex-col items-center justify-center min-h-screen p-6 md:p-10 font-[family-name:var(--font-geist-sans)] text-center bg-bgLarge bg-center bg-cover bg-no-repeat">
+      <div className="flex flex-col gap-6 bg-white/70 rounded-xl shadow-md backdrop-blur-sm items-center justify-center py-10 px-6 md:px-10">
+        {" "}
+        <Image
+          src={"/logo.png"}
+          alt="Task Buddy"
+          className="object-cover"
+          style={{ width: "auto", height: "auto" }}
+          width={200}
+          height={100}
+        />
+        <p className="text-sm md:text-base font-bold">
+          Streamline your workflow and track progress effortlessly with our
+          all-in-one task management app.
+        </p>
+        {user ? (
+          <h2 className="bg-primary text-white rounded-sm font-bold p-3 px-8">
+            Welcome Back, {user.name}
+          </h2>
+        ) : (
+          <Button
+            onClick={() => handleLogin()}
+            className="mt-5 font-medium text-lg h-12"
+          >
+            <Image src={"/google.svg"} alt="Google" width={18} height={18} />
+            Continue with Google
+          </Button>
+        )}
+      </div>{" "}
     </div>
   );
 }

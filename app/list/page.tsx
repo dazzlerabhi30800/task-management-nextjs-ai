@@ -12,6 +12,7 @@ export default function List() {
 
   useEffect(() => {
     return () => {
+      if (!user) return;
       fetchTodos(user?.id as string);
     };
   }, [user]);
