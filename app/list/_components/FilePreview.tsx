@@ -70,9 +70,12 @@ const FilePreview = ({
               <Image
                 src={file?.fileLink}
                 alt={file.path}
-                priority={true}
+                priority
+                // loader={<div>Spinner</div>}
+                placeholder="blur"
                 width={200}
                 height={120}
+                blurDataURL="data:..."
                 className="h-full w-full md:w-[300px] object-cover rounded-md  group-hover:grayscale-[0.8] transition-all"
               />
             </Link>
@@ -134,7 +137,7 @@ const FilePreview = ({
               disabled={page === docInfo.pageLimit}
               onClick={() =>
                 setPage((prev) =>
-                  prev + 1 >= docInfo.pageLimit ? docInfo.pageLimit : prev + 1
+                  prev + 1 >= docInfo.pageLimit ? docInfo.pageLimit : prev + 1,
                 )
               }
               className="w-auto! h-auto!"

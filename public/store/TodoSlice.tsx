@@ -142,9 +142,9 @@ export const useTodoStore = create<todoStore>()(
       },
       setTodoInfo: (todoInfo) => {
         const newTodoInfo = { ...todoInfo };
-        delete newTodoInfo.created_at;
-        delete newTodoInfo.createdBy;
-        delete newTodoInfo.position;
+        // delete newTodoInfo.created_at;
+        // delete newTodoInfo.createdBy;
+        // delete newTodoInfo.position;
         set({ todoInfo: newTodoInfo });
       },
       //NOTE: change the todoInfo for taskDialog data to initial empty states

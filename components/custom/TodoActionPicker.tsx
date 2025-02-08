@@ -35,8 +35,9 @@ export default function TodoActionPicker({
   });
 
   const handleEditTodo = () => {
-    const newTodo = Object.assign({}, todo);
-    setTodoInfo(newTodo);
+    console.log("hello");
+    // const newTodo = Object.assign({}, todo);
+    setTodoInfo(todo);
     setShowTaskDialog();
   };
 

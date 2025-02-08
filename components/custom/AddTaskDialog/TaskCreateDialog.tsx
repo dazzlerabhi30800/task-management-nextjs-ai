@@ -14,7 +14,7 @@ import TaskFooterBtn from "./TaskFooterBtn";
 
 const TaskCreateDialog = () => {
   const { setShowTaskDialog, showComp, showTaskDialog } = useActionStore(
-    (state) => state,
+    (state) => state
   );
   const { resize } = useResize();
   const [files, setFiles] = useState<Array<File>>([]);
@@ -45,7 +45,7 @@ const TaskCreateDialog = () => {
       todoInfo,
       user?.id as string,
       "created",
-      files,
+      files
     );
     if (result) {
       closeDialog();
@@ -57,7 +57,7 @@ const TaskCreateDialog = () => {
       todoInfo,
       "updated",
       user?.id as string,
-      files,
+      files
     );
     if (result) {
       closeDialog();
@@ -71,7 +71,7 @@ const TaskCreateDialog = () => {
       fileUrl: todoInfo.fileUrl.filter((item) => item.path !== path),
     });
     const newFileUrl = [...todoInfo.fileUrl].filter(
-      (item) => item.path !== path,
+      (item) => item.path !== path
     );
     const newTodos = todos.map((item) => {
       if (item.id === todoInfo.status) {
@@ -88,7 +88,7 @@ const TaskCreateDialog = () => {
       path,
       todoInfo.id as string,
       newFileUrl,
-      todoInfo.history,
+      todoInfo.history
     );
   };
 
@@ -101,7 +101,7 @@ const TaskCreateDialog = () => {
     });
     if (e.target.files) {
       const checkFileType = [...e.target.files].every(
-        (file) => file.type.includes("image/") || file.type.includes("pdf"),
+        (file) => file.type.includes("image/") || file.type.includes("pdf")
       );
       if (!checkFileType) {
         toast.error("you can upload only image for pdf files");
