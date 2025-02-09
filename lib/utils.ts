@@ -78,3 +78,4 @@ export const checkFilterDate = (
 
   return date1Obj.date === date2Obj.date && date1Obj.month === date2Obj.month;
 };
+

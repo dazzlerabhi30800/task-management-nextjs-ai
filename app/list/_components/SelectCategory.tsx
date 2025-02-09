@@ -18,7 +18,6 @@ type category = {
 
 export function SelectCategory({ width, type }: category) {
   const { todoInfo, setTodoInfo, filterTodos } = useTodoStore((state) => state);
-  const [category, setCategory] = React.useState<string>(todoInfo.status);
   const handleStatus = (status: string) => {
     if (!type) {
       setTodoInfo({ ...todoInfo, status: status });
@@ -28,14 +27,13 @@ export function SelectCategory({ width, type }: category) {
     }
   };
 
-  React.useEffect(() => {
-    if (todoInfo.status === "") return;
-    setCategory(todoInfo.status);
-  }, [todoInfo.status]);
   return (
-    <Select value={category} onValueChange={(value) => handleStatus(value)}>
+    <Select
+      value={todoInfo.status}
+      onValueChange={(value) => handleStatus(value)}
+    >
       <SelectTrigger style={{ width: width ? width : 100 }}>
-        <SelectValue placeholder="Category" />
+        <SelectValue placeholder="Status" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>

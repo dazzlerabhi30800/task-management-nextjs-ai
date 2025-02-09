@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowDown, ArrowLeftIcon, ArrowRightIcon, X } from "lucide-react";
 import { Document, Page } from "react-pdf";
 import { Button } from "@/components/ui/button";
+import ImageComp from "./ImageComp";
 
 type docs = {
   pageLimit: number;
@@ -41,7 +42,7 @@ const FilePreview = ({
         // NOTE: Buttons to close Show Preview & Delete File
         <div
           key={index}
-          className="flex flex-col text-cusBlack mt-5 md:mt-0 relative group h-[170px] md:h-[130px] w-full md:w-[200px]"
+          className="flex flex-col text-cusBlack mt-5 md:mt-0 relative group  w-full md:w-[200px]"
         >
           <div className="flex justify-between items-center">
             {file.fileType.includes("application/pdf") && (
@@ -62,26 +63,11 @@ const FilePreview = ({
             </button>
           </div>
           {file.fileType.includes("image/") ? (
-            <Link
-              href={file.fileLink}
-              target="_blank"
-              className="w-full h-full flex"
-            >
-              <Image
-                src={file?.fileLink}
-                alt={file.path}
-                priority
-                width={200}
-                height={120}
-                placeholder="blur"
-                blurDataURL="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
-                className="h-full w-full md:w-[300px] object-cover rounded-md  group-hover:grayscale-[0.8] transition-all"
-              />
-            </Link>
+            <ImageComp path={file.path} fileLink={file.fileLink} />
           ) : (
             <div>
               {/* // NOTE: Document Image preview */}
-              <div className="w-full h-[120px] hidden md:block cursor-pointer">
+              <div className="w-full h-[170px] md:h-[130px] hidden md:block cursor-pointer">
                 <Document
                   onLoadSuccess={(pdf) =>
                     setDocInfo((prev) => ({ ...prev, pageLimit: pdf.numPages }))
