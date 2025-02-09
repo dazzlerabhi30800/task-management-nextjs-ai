@@ -117,7 +117,6 @@ export const useTodoStore = create<todoStore>()(
       },
       // NOTE: this will function will genereate the Ai Prompt based on the todo titles
       fetchTodoAi: async (prompt: string) => {
-        if (prompt.length === 0) return;
         const result = await getAiPrompt(prompt);
         if (result) {
           set({ aiTodoPrompt: result, loading: false });

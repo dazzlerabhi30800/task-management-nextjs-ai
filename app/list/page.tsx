@@ -1,6 +1,6 @@
 "use client";
-import React, { useEffect } from "react";
-import TaskTableWrapper from "./_components/TodoTable";
+import React, { Suspense, useEffect } from "react";
+import TaskTableWrapper from "./_components/TaskTableWrapper";
 import TaskCreateDialog from "@/components/custom/AddTaskDialog/TaskCreateDialog";
 import { useTodoStore } from "@/public/store/TodoSlice";
 import { useUserStore } from "@/public/store/UserSlice";
@@ -19,8 +19,12 @@ export default function List() {
 
   return (
     <div className="px-4 sm:px-6 md:px-8 flex flex-col flex-1 relative">
-      <AISummary />
-      <TaskTableWrapper />
+      <Suspense fallback={<div>Loading...</div>}>
+        <AISummary />
+      </Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
+        <TaskTableWrapper />
+      </Suspense>
       <TaskCreateDialog />
     </div>
   );

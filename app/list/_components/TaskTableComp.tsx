@@ -21,9 +21,9 @@ function TaskTableComp({
   const { resize } = useResize();
   return (
     <div
-      className={`flex flex-col rounded-xl shadow-md bg-gray-100 ${
-        collapse ? "h-8 overflow-hidden" : "h-auto"
-      } transition-all`}
+      className={`todoWrapper flex flex-col shadow-md bg-stone-100 rounded-xl ${
+        collapse && "todoWrapper-collapse"
+      }`}
     >
       {/* NOTE: Task Header */}
       <div

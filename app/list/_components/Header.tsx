@@ -4,7 +4,7 @@ import { useUserStore } from "@/public/store/UserSlice";
 import { ClipboardList, LogOut, Search, SquareKanban } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 import { SelectCategory } from "./SelectCategory";
 import { SelectDueDate } from "./SelectDueDate";
@@ -21,12 +21,11 @@ const Header = () => {
   );
   const [searchString, setSearchString] = React.useState<string>("");
   const path = usePathname();
-  const router = useRouter();
   const handleLogout = () => {
     googleLogout();
-    router.push("/");
     setUser(null);
     toast.success("You've been logged out!!");
+    redirect("/");
   };
 
   useEffect(() => {
@@ -37,7 +36,7 @@ const Header = () => {
   }, [searchString]);
 
   return (
-    <header className="md:py-10 w-full">
+    <header className="md:py-7 w-full">
       {/* NOTE: First Section */}
       <div className="flex justify-between items-center bg-pink-500 md:bg-transparent p-3 md:p-0 md:px-8">
         <div className="flex flex-col gap-4">

@@ -167,3 +167,17 @@ input[type="checkbox"]:checked::after {
   width: 200px;
   overflow: hidden;
 }
+
+/* NOTE: Todo Wrapper */
+.todoWrapper {
+  min-height: 100px;
+  height: auto;
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* NOTE: Todo Wrapper collapsible class */
+.todoWrapper-collapse {
+  min-height: 32px !important;
+  height: 32px !important;
+  overflow: hidden !important;
+}

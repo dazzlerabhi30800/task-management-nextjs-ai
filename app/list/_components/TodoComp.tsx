@@ -51,7 +51,7 @@ const TodoComp = ({
       {...draggableProps}
       {...dragHandleProps}
       ref={innerRef}
-      className={`grid grid-cols-1 md:grid-cols-10 py-2 text-cusBlack/70 px-4 border-b border-b-gray-300/50 flex justify-between items-center relative ${
+      className={`grid grid-cols-1 md:grid-cols-10 py-[9px] text-cusBlack/70 px-4 border-b border-b-gray-300/50 flex justify-between items-center relative ${
         snapshot.isDragging && "scale-110 bg-gray-200"
       }  transition-all`}
     >
