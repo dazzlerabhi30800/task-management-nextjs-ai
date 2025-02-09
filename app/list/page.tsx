@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense, useEffect } from "react";
+import React, { useEffect } from "react";
 import TaskTableWrapper from "./_components/TaskTableWrapper";
 import TaskCreateDialog from "@/components/custom/AddTaskDialog/TaskCreateDialog";
 import { useTodoStore } from "@/public/store/TodoSlice";
@@ -16,15 +16,12 @@ export default function List() {
       fetchTodos(user?.id as string);
     };
   }, [user]);
+  console.log("hello");
 
   return (
     <div className="px-4 sm:px-6 md:px-8 flex flex-col flex-1 relative">
-      <Suspense fallback={<div>Loading...</div>}>
-        <AISummary />
-      </Suspense>
-      <Suspense fallback={<div>Loading...</div>}>
-        <TaskTableWrapper />
-      </Suspense>
+      <AISummary />
+      <TaskTableWrapper />
       <TaskCreateDialog />
     </div>
   );

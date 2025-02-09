@@ -29,7 +29,7 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
   // NOTE: this is for the document viewer
   pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     "pdfjs-dist/build/pdf.worker.min.mjs",
-    import.meta.url
+    import.meta.url,
   ).toString();
 
   if (!client)
