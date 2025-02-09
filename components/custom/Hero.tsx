@@ -5,7 +5,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Hero() {
   const { user, saveUserInDatabase } = useUserStore((state) => state);
@@ -20,7 +20,7 @@ export default function Hero() {
     onSuccess: async (tokenResponse) => {
       const userInfo = await axios.get(
         "https://www.googleapis.com/oauth2/v3/userinfo",
-        { headers: { Authorization: `Bearer ${tokenResponse?.access_token}` } }
+        { headers: { Authorization: `Bearer ${tokenResponse?.access_token}` } },
       );
       const newUser = {
         name: userInfo?.data.name as string,
@@ -34,10 +34,24 @@ export default function Hero() {
       console.log(err);
     },
   });
+  const [loading, setLoading] = useState(true);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-6 md:p-10 font-[family-name:var(--font-geist-sans)] text-center bg-bgLarge bg-center bg-cover bg-no-repeat">
-      <div className="flex flex-col gap-6 bg-black/50 text-white rounded-xl shadow-md backdrop-blur-lg items-center justify-center py-10 px-6 md:px-10">
+    <div className="flex flex-col items-center justify-center min-h-screen p-6 md:p-10 font-[family-name:var(--font-geist-sans)] text-center">
+      <div className="fixed flex top-0 left-0 w-full h-screen z-10">
+        <Image
+          src={"/goku.png"}
+          alt="Background Img"
+          width={1500}
+          height={1500}
+          style={{ width: "100%", height: "100vh" }}
+          className="object-cover"
+          onLoad={() => setLoading(false)}
+        />
+      </div>
+      <div
+        className={`flex flex-col gap-6 bg-black/50 text-white rounded-xl shadow-md backdrop-blur-lg items-center justify-center py-10 px-6 md:px-10 relative z-20 ${loading ? "-translate-y-20 opacity-0" : "translate-y-0 opacity-100"} transition duration-500 linear`}
+      >
         <Image
           src={"/logo.svg"}
           alt="Task Buddy"
