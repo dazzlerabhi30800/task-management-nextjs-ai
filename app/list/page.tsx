@@ -11,12 +11,9 @@ export default function List() {
   const { fetchTodos } = useTodoStore((state) => state);
 
   useEffect(() => {
-    return () => {
-      if (!user) return;
-      fetchTodos(user?.id as string);
-    };
+    if (!user) return;
+    fetchTodos(user?.id as string);
   }, [user]);
-  console.log("hello");
 
   return (
     <div className="px-4 sm:px-6 md:px-8 flex flex-col flex-1 relative">

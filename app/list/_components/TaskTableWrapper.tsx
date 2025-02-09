@@ -18,7 +18,7 @@ const TaskTableWrapper = () => {
     loading || todoSearchString.length === 0 || !todoState
       ? false
       : todos.every((item) => item.todos.length === 0);
-  console.log("hello in task table wrapper");
+  console.log(todos);
 
   return (
     <div className="flex flex-col flex-1 py-3 pb-10 mt-7 md:mt-3 border-t border-gray-300">
