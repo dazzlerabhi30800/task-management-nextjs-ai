@@ -25,7 +25,7 @@ const TaskFields = ({
   const { todoInfo, setTodoInfo } = useTodoStore((state) => state);
 
   //NOTE: Handle Drop on drop-zone
-  const onDrop = useCallback((acceptedFiles: any) => {
+  const onDrop = useCallback((acceptedFiles: File[]) => {
     if (files.length > 3) return;
     setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
   }, []);
