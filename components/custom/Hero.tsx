@@ -20,7 +20,7 @@ export default function Hero() {
     onSuccess: async (tokenResponse) => {
       const userInfo = await axios.get(
         "https://www.googleapis.com/oauth2/v3/userinfo",
-        { headers: { Authorization: `Bearer ${tokenResponse?.access_token}` } },
+        { headers: { Authorization: `Bearer ${tokenResponse?.access_token}` } }
       );
       const newUser = {
         name: userInfo?.data.name as string,
@@ -37,17 +37,16 @@ export default function Hero() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-6 md:p-10 font-[family-name:var(--font-geist-sans)] text-center bg-bgLarge bg-center bg-cover bg-no-repeat">
-      <div className="flex flex-col gap-6 bg-white/70 rounded-xl shadow-md backdrop-blur-sm items-center justify-center py-10 px-6 md:px-10">
-        {" "}
+      <div className="flex flex-col gap-6 bg-black/50 text-white rounded-xl shadow-md backdrop-blur-lg items-center justify-center py-10 px-6 md:px-10">
         <Image
-          src={"/logo.png"}
+          src={"/logo.svg"}
           alt="Task Buddy"
-          className="object-cover"
-          style={{ width: "auto", height: "auto" }}
           width={200}
           height={100}
+          style={{ width: "300px", height: "45px" }}
+          priority
         />
-        <p className="text-sm md:text-base font-bold">
+        <p className="text-sm md:text-base font-semibold max-w-2xl">
           Streamline your workflow and track progress effortlessly with our
           all-in-one task management app.
         </p>
@@ -59,6 +58,7 @@ export default function Hero() {
           <Button
             onClick={() => handleLogin()}
             className="mt-5 font-medium text-lg h-12"
+            variant="secondary"
           >
             <Image src={"/google.svg"} alt="Google" width={18} height={18} />
             Continue with Google
