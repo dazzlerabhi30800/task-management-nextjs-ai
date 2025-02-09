@@ -1,4 +1,5 @@
 import { supabase } from "@/config/SupabaseConfig";
+import { user } from "@/type";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
@@ -46,6 +47,6 @@ export const useUserStore = create<userStore>()(
       name: "userInfo",
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({ user: state.user }),
-    }
-  )
+    },
+  ),
 );
