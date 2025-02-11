@@ -181,3 +181,19 @@ input[type="checkbox"]:checked::after {
   height: 32px !important;
   overflow: hidden !important;
 }
+
+.animComp {
+  animation: topUp 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes topUp {
+  from {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
