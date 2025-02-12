@@ -23,8 +23,8 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
   }, [user, client]);
 
   useEffect(() => {
-    setClient(true);
-  }, []);
+    setClient(typeof window !== "undefined" ? true : false);
+  }, [window]);
 
   // NOTE: this is for the document viewer
   pdfjs.GlobalWorkerOptions.workerSrc = new URL(
