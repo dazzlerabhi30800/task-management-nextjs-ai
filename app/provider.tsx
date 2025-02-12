@@ -4,9 +4,6 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Spinner from "./list/_components/Spinner";
-import { pdfjs } from "react-pdf";
-import "react-pdf/dist/Page/AnnotationLayer.css";
-import "react-pdf/dist/Page/TextLayer.css";
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
   const { user } = useUserStore((state) => state);
@@ -25,12 +22,6 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     setClient(true);
   }, []);
-
-  // NOTE: this is for the document viewer
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    "pdfjs-dist/build/pdf.worker.min.mjs",
-    import.meta.url,
-  ).toString();
 
   if (!client)
     return (
