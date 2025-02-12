@@ -51,14 +51,17 @@ export default function Hero() {
       <div
         className={`flex flex-col gap-6 bg-black/50 text-white rounded-xl shadow-md backdrop-blur-lg items-center justify-center py-10 px-6 md:px-10 relative z-20 ${loading ? "-translate-y-20 opacity-0" : "translate-y-0 opacity-100"} transition duration-500 linear`}
       >
-        <Image
-          src={"/logo.svg"}
-          alt="Task Buddy"
-          width={200}
-          height={100}
-          style={{ width: "300px", height: "45px" }}
-          priority
-        />
+        <div className="w-60 md:w-80">
+          <Image
+            priority
+            src={"/logo.svg"}
+            alt="Task Buddy"
+            width={100}
+            height={100}
+            style={{ width: "100%", height: "45px" }}
+            className="object-cover rounded-md"
+          />
+        </div>
         <p className="text-sm md:text-base font-semibold max-w-2xl">
           Streamline your workflow and track progress effortlessly with our
           all-in-one task management app.
@@ -70,7 +73,7 @@ export default function Hero() {
         ) : (
           <Button
             onClick={() => handleLogin()}
-            className="mt-5 font-medium text-lg h-12"
+            className="mt-5 font-medium md:text-lg md:h-12"
             variant="secondary"
           >
             <Image src={"/google.svg"} alt="Google" width={18} height={18} />
