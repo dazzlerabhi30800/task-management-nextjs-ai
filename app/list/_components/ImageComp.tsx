@@ -8,7 +8,7 @@ const ImageComp = ({ fileLink, path }: { fileLink: string; path: string }) => {
     <Link
       href={fileLink}
       target="_blank"
-      className={`h-[170px] md:h-[130px] bg-red-100 rounded-md flex ${loading ? "animate-pulse" : ""}`}
+      className={`flex h-[130px] w-inherit md:h-[130px] bg-red-100 rounded-md ${loading ? "animate-pulse" : ""}`}
     >
       <Image
         src={fileLink}
@@ -16,8 +16,8 @@ const ImageComp = ({ fileLink, path }: { fileLink: string; path: string }) => {
         onLoad={() => setLoading(false)}
         priority
         width={200}
-        height={120}
-        style={{ height: "auto", width: "auto" }}
+        height={100}
+        style={{ width: "100%", height: "100%" }}
         className="h-full w-full md:w-[300px] object-cover rounded-md  group-hover:grayscale-[0.8] transition-all"
       />
     </Link>

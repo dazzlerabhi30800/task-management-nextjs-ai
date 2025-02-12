@@ -40,7 +40,7 @@ const FilePreview = ({
         // NOTE: Buttons to close Show Preview & Delete File
         <div
           key={index}
-          className="flex flex-col text-cusBlack mt-5 md:mt-0 relative group  w-full md:w-[200px]"
+          className="flex flex-col text-cusBlack mt-5 md:mt-0 relative group w-full md:w-[200px]"
         >
           <div className="flex justify-between items-center">
             {file.fileType.includes("application/pdf") && (
@@ -53,7 +53,7 @@ const FilePreview = ({
             )}
             <button
               onClick={() => deleteFile(file.path)}
-              className="my-1 hover:scale-110 bg-cusBlack text-white w-fit ml-auto self-end p-1 rounded-md hover:scale-110 transition-all"
+              className="my-1 hover:scale-110 bg-cusBlack text-white ml-auto w-fit p-1 rounded-md hover:scale-110 transition-all"
             >
               <X size={20} />
             </button>
