@@ -2,10 +2,17 @@
 import { file } from "@/public/store/TodoSlice";
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowDown, ArrowLeftIcon, ArrowRightIcon, X } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  Loader2,
+  X,
+} from "lucide-react";
 import { Document, Page } from "react-pdf";
 import { Button } from "@/components/ui/button";
 import ImageComp from "./ImageComp";
+import { BlobProvider } from "@react-pdf/renderer";
 
 export type docs = {
   pageLimit: number;
@@ -67,20 +74,28 @@ const FilePreview = ({
             <div>
               {/* // NOTE: Document Image preview */}
               <div className="w-full h-[170px] md:h-[130px] hidden md:block cursor-pointer">
-                {typeof window !== "undefined" && (
-                  <Document
-                    onLoadSuccess={(pdf) =>
-                      setDocInfo((prev) => ({
-                        ...prev,
-                        pageLimit: pdf.numPages,
-                      }))
-                    }
-                    className="overflow-hidden document-viewer"
-                    file={file?.fileLink}
-                  >
-                    <Page pageIndex={0} />
-                  </Document>
-                )}
+                <BlobProvider document={<></>}>
+                  {({ loading }) =>
+                    loading ? (
+                      <div>
+                        <Loader2 />
+                      </div>
+                    ) : (
+                      <Document
+                        onLoadSuccess={(pdf) =>
+                          setDocInfo((prev) => ({
+                            ...prev,
+                            pageLimit: pdf.numPages,
+                          }))
+                        }
+                        className="overflow-hidden document-viewer"
+                        file={file?.fileLink}
+                      >
+                        <Page pageIndex={0} />
+                      </Document>
+                    )
+                  }
+                </BlobProvider>
               </div>
               {/* NOTE: This preview is for mobile */}
               <div className="flex md:hidden relative w-full h-[150px] md:h-[130px]">
@@ -136,9 +151,19 @@ const FilePreview = ({
           </div>
           {/* INFO: Document Preview */}
           <div className="flex-1 flex h-full w-full overflow-y-auto">
-            <Document className="w-full h-full" file={docInfo.link}>
-              <Page scale={0.7} pageNumber={page} />
-            </Document>
+            <BlobProvider document={<></>}>
+              {({ loading }) =>
+                loading ? (
+                  <div>
+                    <Loader2 />
+                  </div>
+                ) : (
+                  <Document className="w-full h-full" file={docInfo.link}>
+                    <Page scale={0.7} pageNumber={page} />
+                  </Document>
+                )
+              }
+            </BlobProvider>
           </div>
         </div>
       )}
