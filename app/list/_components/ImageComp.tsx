@@ -8,7 +8,7 @@ const ImageComp = ({ fileLink, path }: { fileLink: string; path: string }) => {
     <Link
       href={fileLink}
       target="_blank"
-      className={`flex h-[130px] w-inherit md:h-[130px] bg-red-100 rounded-md ${loading ? "animate-pulse" : ""}`}
+      className={`flex h-[150px] w-inherit md:h-[130px] bg-red-100 rounded-md ${loading ? "animate-pulse" : ""}`}
     >
       <Image
         src={fileLink}

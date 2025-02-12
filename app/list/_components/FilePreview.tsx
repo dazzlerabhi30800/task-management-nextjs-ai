@@ -40,7 +40,7 @@ const FilePreview = ({
         // NOTE: Buttons to close Show Preview & Delete File
         <div
           key={index}
-          className="flex flex-col text-cusBlack mt-5 md:mt-0 relative group w-full md:w-[200px]"
+          className="flex flex-col text-cusBlack mt-3 md:mt-0 relative group w-full md:w-[200px]"
         >
           <div className="flex justify-between items-center">
             {file.fileType.includes("application/pdf") && (
