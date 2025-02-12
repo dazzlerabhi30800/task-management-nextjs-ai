@@ -30,7 +30,10 @@ export default function RootLayout({
           <Provider>{children}</Provider>
         </main>
       </body>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+      <script
+        async
+        src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"
+      />
     </html>
   );
 }
