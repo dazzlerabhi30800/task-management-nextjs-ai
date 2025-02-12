@@ -6,14 +6,17 @@ import React, { useEffect, useState } from "react";
 import Spinner from "./list/_components/Spinner";
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter();
   const { user } = useUserStore((state) => state);
   const [client, setClient] = useState(false);
-  const router = useRouter();
+
+  //NOTE: Check user
   const checkUser = () => {
     if (!user) {
       router.push("/");
     }
   };
+
   useEffect(() => {
     if (!client) return;
     checkUser();

@@ -21,10 +21,9 @@ function TaskTableComp({
   const { resize } = useResize();
   return (
     <div
-      className={`todoWrapper flex flex-col opacity-0 shadow-md bg-stone-100 rounded-xl ${
+      className={`todoWrapper flex flex-col shadow-md bg-stone-100 rounded-xl ${
         collapse && "todoWrapper-collapse"
-      }  animComp`}
-      style={{ "--delay": `${index * 0.5}s` } as React.CSSProperties}
+      }`}
     >
       {/* NOTE: Task Header */}
       <div
