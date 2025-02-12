@@ -6,7 +6,7 @@ import { ArrowDown, ArrowLeftIcon, ArrowRightIcon, X } from "lucide-react";
 import { Document, Page } from "react-pdf";
 import { Button } from "@/components/ui/button";
 import ImageComp from "./ImageComp";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 
 export type docs = {
   pageLimit: number;

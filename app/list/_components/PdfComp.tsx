@@ -21,8 +21,9 @@ const PdfComp = ({ fileLink, setDocInfo }: props) => {
       </Document>
     );
   } catch (err) {
-    return <div>Error: There is some error</div>;
+    console.log(err);
   }
+  return <div>Error: There is some error</div>;
   // return <div>PdfComp</div>;
 };
 
