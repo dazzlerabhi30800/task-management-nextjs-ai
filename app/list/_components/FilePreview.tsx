@@ -6,7 +6,6 @@ import { ArrowDown, ArrowLeftIcon, ArrowRightIcon, X } from "lucide-react";
 import { Document, Page } from "react-pdf";
 import { Button } from "@/components/ui/button";
 import ImageComp from "./ImageComp";
-// import dynamic from "next/dynamic";
 
 export type docs = {
   pageLimit: number;
@@ -35,9 +34,6 @@ const FilePreview = ({
       showPreview: true,
     });
   };
-
-  // NOTE: dynamic component
-  // const MyPdfComponent = dynamic(() => import("./PdfComp"), { ssr: false });
 
   return (
     <div className="flex flex-col md:flex-row md:flex-wrap gap-8 md:gap-10 pb-10">
@@ -71,15 +67,20 @@ const FilePreview = ({
             <div>
               {/* // NOTE: Document Image preview */}
               <div className="w-full h-[170px] md:h-[130px] hidden md:block cursor-pointer">
-                <Document
-                  onLoadSuccess={(pdf) =>
-                    setDocInfo((prev) => ({ ...prev, pageLimit: pdf.numPages }))
-                  }
-                  className="overflow-hidden document-viewer"
-                  file={file?.fileLink}
-                >
-                  <Page pageIndex={0} />
-                </Document>
+                {typeof window !== "undefined" && (
+                  <Document
+                    onLoadSuccess={(pdf) =>
+                      setDocInfo((prev) => ({
+                        ...prev,
+                        pageLimit: pdf.numPages,
+                      }))
+                    }
+                    className="overflow-hidden document-viewer"
+                    file={file?.fileLink}
+                  >
+                    <Page pageIndex={0} />
+                  </Document>
+                )}
               </div>
               {/* NOTE: This preview is for mobile */}
               <div className="flex md:hidden relative w-full h-[150px] md:h-[130px]">
