@@ -1,25 +1,19 @@
 "use client";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useUserStore } from "@/public/store/UserSlice";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import Image from "next/image";
-import { redirect } from "next/navigation";
-import { useEffect, useState } from "react";
 
 export default function Hero() {
   const { user, saveUserInDatabase } = useUserStore((state) => state);
-
-  useEffect(() => {
-    if (!user) return;
-    redirect("/");
-  }, [user]);
 
   const handleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       const userInfo = await axios.get(
         "https://www.googleapis.com/oauth2/v3/userinfo",
-        { headers: { Authorization: `Bearer ${tokenResponse?.access_token}` } },
+        { headers: { Authorization: `Bearer ${tokenResponse?.access_token}` } }
       );
       const newUser = {
         name: userInfo?.data.name as string,
@@ -49,7 +43,9 @@ export default function Hero() {
         />
       </div>
       <div
-        className={`flex flex-col gap-6 bg-black/50 text-white rounded-xl shadow-md backdrop-blur-lg items-center justify-center py-10 px-6 md:px-10 relative z-20 ${loading ? "-translate-y-20 opacity-0" : "translate-y-0 opacity-100"} transition duration-500 linear`}
+        className={`flex flex-col gap-6 bg-black/50 text-white rounded-xl shadow-md backdrop-blur-lg items-center justify-center py-10 px-6 md:px-10 relative z-20 ${
+          loading ? "-translate-y-20 opacity-0" : "translate-y-0 opacity-100"
+        } transition duration-500 linear`}
       >
         <div className="w-60 md:w-80">
           <Image

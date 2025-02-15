@@ -17,7 +17,7 @@ const Header = () => {
   const { user, setUser } = useUserStore((state) => state);
   const { setShowTaskDialog } = useActionStore((state) => state);
   const { filterTodosBySearchString, setTodoInfoInitial } = useTodoStore(
-    (state) => state,
+    (state) => state
   );
   const [searchString, setSearchString] = React.useState<string>("");
   const path = usePathname();
