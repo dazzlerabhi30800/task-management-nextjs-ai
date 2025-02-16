@@ -32,12 +32,9 @@ const TaskCreateDialog = () => {
 
   // NOTE: closeTaskDialog after some action is done;
   const closeDialog = () => {
-    setTodoInfoInitial();
     setFiles([]);
     setShowTaskDialog();
-    setTimeout(() => {
-      setTodoInfoInitial();
-    }, 100);
+    setTodoInfoInitial();
   };
 
   const createTask = async () => {

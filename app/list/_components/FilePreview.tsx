@@ -46,7 +46,7 @@ const FilePreview = ({
             {file.fileType.includes("application/pdf") && (
               <button
                 onClick={() => handleDocInfo(file?.fileLink)}
-                className="w-fit h-fit bg-cusBlack text-white hidden md:block rounded-md py-[6px] px-2"
+                className="w-fit h-fit bg-cusBlack text-white rounded-md py-[6px] px-2"
               >
                 <ArrowDown size={18} />
               </button>
@@ -63,22 +63,12 @@ const FilePreview = ({
           ) : (
             <div>
               {/* // NOTE: Document Image preview */}
-              <div className="w-full h-[170px] md:h-[130px] hidden md:block cursor-pointer">
+              <div className="w-full h-[170px] md:h-[130px] cursor-pointer">
                 <iframe
                   src={`https://docs.google.com/viewer?url=${file?.fileLink}&embedded=true`}
                   width="100%"
                   height="100%"
                 ></iframe>
-              </div>
-              {/* NOTE: This preview is for mobile */}
-              <div className="flex md:hidden relative w-full h-[150px] md:h-[130px]">
-                <Link
-                  className="w-full rounded-md bg-cusBlack text-white text-lg font-bold h-full flex justify-center items-center"
-                  href={file.fileLink}
-                  target="_blank"
-                >
-                  This is a pdf file
-                </Link>
               </div>
             </div>
           )}
