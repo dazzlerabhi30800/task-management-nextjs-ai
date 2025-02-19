@@ -17,7 +17,7 @@ const Header = () => {
   const { user, setUser } = useUserStore((state) => state);
   const { setShowTaskDialog } = useActionStore((state) => state);
   const { filterTodosBySearchString, setTodoInfoInitial } = useTodoStore(
-    (state) => state
+    (state) => state,
   );
   const [searchString, setSearchString] = React.useState<string>("");
   const path = usePathname();
@@ -38,16 +38,15 @@ const Header = () => {
   return (
     <header className="md:py-7 w-full">
       {/* NOTE: First Section */}
-      <div className="flex justify-between items-center bg-pink-500 md:bg-transparent p-3 md:p-0 md:px-8">
+      <div className="flex justify-between items-center bg-teal-200 md:bg-transparent p-3 md:p-0 md:px-8">
         <div className="flex flex-col gap-4">
           <Image
-            src={"/logo-dark.svg"}
-            alt="Task Buddy"
-            className="w-24 h-[20px] md:h-auto md:w-[150px]"
+            src={"/logo.svg"}
+            alt="Dazzy Task Buddy"
             width={150}
-            style={{ width: "auto", height: "auto" }}
-            priority={true}
             height={20}
+            className="w-32 h-[30px] md:h-[50px] md:w-[200px]"
+            priority={true}
           />
           <nav className="hidden md:flex items-center gap-6 text-lg text-gray-600 font-medium pl-1">
             <Link
