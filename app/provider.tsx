@@ -4,6 +4,10 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Spinner from "./list/_components/Spinner";
+import "react-pdf/dist/Page/AnnotationLayer.css";
+import "react-pdf/dist/Page/TextLayer.css";
+
+import { pdfjs } from "react-pdf";
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
@@ -27,6 +31,12 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     setClient(true);
   }, []);
+
+  // NOTE: Config for Pdf File
+  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+    "pdfjs-dist/build/pdf.worker.min.mjs",
+    import.meta.url
+  ).toString();
 
   if (!client)
     return (

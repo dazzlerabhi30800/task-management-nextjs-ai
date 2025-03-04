@@ -1,10 +1,11 @@
 "use client";
-import { file } from "@/public/store/TodoSlice";
 import React, { useState } from "react";
+import { file } from "@/public/store/TodoSlice";
 import { ArrowDown, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ImageComp from "./ImageComp";
 import PdfPreview from "./PdfPreview";
+import { Document, Page } from "react-pdf";
 
 export type docs = {
   link: string;
@@ -81,11 +82,14 @@ const FilePreview = ({
           </div>
           {/* INFO: Document Preview */}
           <div className="flex-1 flex h-full w-full overflow-y-auto">
-            <iframe
+            <Document file={docInfo.link}>
+              <Page pageNumber={1} />
+            </Document>
+            {/* <iframe
               src={`https://docs.google.com/viewer?url=${docInfo.link}&embedded=true`}
               width="100%"
               height="100%"
-            />
+              /> */}
           </div>
         </div>
       )}

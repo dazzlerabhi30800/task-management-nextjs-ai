@@ -15,6 +15,7 @@ export default function Home() {
     setTodoInfoInitial();
   }, []);
 
+  // TODO: we have to fix this code next morning.
   if (user) return redirect("/list");
   return (
     <div>

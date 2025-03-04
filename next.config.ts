@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  webpack: (config) => {
+    config.resolve.alias.canvas = false;
+    config.resolve.fallback = { fs: false };
+    return config;
+  },
+  // swcMinify: false,
   images: {
     remotePatterns: [
       {
