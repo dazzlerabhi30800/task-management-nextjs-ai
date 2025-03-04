@@ -6,8 +6,8 @@ import React, { useEffect, useState } from "react";
 import Spinner from "./list/_components/Spinner";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
-
 import { pdfjs } from "react-pdf";
+
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
