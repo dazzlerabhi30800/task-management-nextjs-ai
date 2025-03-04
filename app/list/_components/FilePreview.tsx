@@ -1,7 +1,7 @@
 "use client";
 import { file } from "@/public/store/TodoSlice";
 import React, { useState } from "react";
-import { ArrowDown, ArrowLeftIcon, ArrowRightIcon, X } from "lucide-react";
+import { ArrowDown, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ImageComp from "./ImageComp";
 import PdfPreview from "./PdfPreview";
