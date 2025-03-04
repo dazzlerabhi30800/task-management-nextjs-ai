@@ -1,17 +1,19 @@
 "use client";
 import { useUserStore } from "@/public/store/UserSlice";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Spinner from "./list/_components/Spinner";
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
+  const pathname = usePathname();
   const { user } = useUserStore((state) => state);
   const [client, setClient] = useState(false);
 
   //NOTE: Check user
   const checkUser = () => {
+    if (pathname === "/") return;
     if (!user) {
       router.push("/");
     }

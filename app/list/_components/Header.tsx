@@ -17,7 +17,7 @@ const Header = () => {
   const { user, setUser } = useUserStore((state) => state);
   const { setShowTaskDialog } = useActionStore((state) => state);
   const { filterTodosBySearchString, setTodoInfoInitial } = useTodoStore(
-    (state) => state,
+    (state) => state
   );
   const [searchString, setSearchString] = React.useState<string>("");
   const path = usePathname();
@@ -38,7 +38,7 @@ const Header = () => {
   return (
     <header className="md:py-7 w-full">
       {/* NOTE: First Section */}
-      <div className="flex justify-between items-center bg-teal-200 md:bg-transparent p-3 md:p-0 md:px-8">
+      <div className="flex justify-between items-center shadow-md md:shadow-none bg-slate-100 md:bg-transparent p-3 md:p-0 md:px-8">
         <div className="flex flex-col gap-4">
           <Image
             src={"/logo.svg"}

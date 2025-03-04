@@ -4,9 +4,9 @@ import React, { useState } from "react";
 import { ArrowDown, ArrowLeftIcon, ArrowRightIcon, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ImageComp from "./ImageComp";
+import PdfPreview from "./PdfPreview";
 
 export type docs = {
-  pageLimit: number;
   link: string;
   showPreview: boolean;
 };
@@ -18,9 +18,7 @@ const FilePreview = ({
   todoFileArray: Array<file>;
   deleteFile: (path: string) => void;
 }) => {
-  const [page, setPage] = useState(1);
   const [docInfo, setDocInfo] = useState<docs>({
-    pageLimit: 0,
     link: "",
     showPreview: false,
   });
@@ -60,16 +58,7 @@ const FilePreview = ({
           {file.fileType.includes("image/") ? (
             <ImageComp path={file.path} fileLink={file.fileLink} />
           ) : (
-            <div>
-              {/* // NOTE: Document Image preview */}
-              <div className="w-full h-[170px] md:h-[130px] cursor-pointer">
-                <iframe
-                  src={`https://docs.google.com/viewer?url=${file?.fileLink}&embedded=true`}
-                  width="100%"
-                  height="100%"
-                ></iframe>
-              </div>
-            </div>
+            <PdfPreview fileLink={file.fileLink} />
           )}
         </div>
       ))}
@@ -90,34 +79,13 @@ const FilePreview = ({
               <X size={20} />
             </Button>
           </div>
-          {/* INFO: Navigation Buttons */}
-          <div className="flex justify-between flex-wrap items-center w-full md:px-4">
-            <Button
-              disabled={page === 1}
-              onClick={() => setPage((prev) => (prev - 1 <= 1 ? 1 : prev - 1))}
-              className="w-auto! h-auto!"
-            >
-              <ArrowLeftIcon size={20} />
-            </Button>
-            <Button
-              disabled={page === docInfo.pageLimit}
-              onClick={() =>
-                setPage((prev) =>
-                  prev + 1 >= docInfo.pageLimit ? docInfo.pageLimit : prev + 1,
-                )
-              }
-              className="w-auto! h-auto!"
-            >
-              <ArrowRightIcon size={20} />
-            </Button>
-          </div>
           {/* INFO: Document Preview */}
           <div className="flex-1 flex h-full w-full overflow-y-auto">
             <iframe
               src={`https://docs.google.com/viewer?url=${docInfo.link}&embedded=true`}
               width="100%"
               height="100%"
-            ></iframe>
+            />
           </div>
         </div>
       )}
