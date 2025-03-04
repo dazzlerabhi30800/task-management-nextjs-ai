@@ -1,17 +1,14 @@
 "use client";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { file } from "@/public/store/TodoSlice";
 import { ArrowDown, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ImageComp from "./ImageComp";
 import PdfPreview from "./PdfPreview";
-import { Document, Page } from "react-pdf";
-import { BlobProvider } from "@react-pdf/renderer";
 
 export type docs = {
   link: string;
   showPreview: boolean;
-  blobFile: File | null;
 };
 
 const FilePreview = ({
@@ -24,7 +21,6 @@ const FilePreview = ({
   const [docInfo, setDocInfo] = useState<docs>({
     link: "",
     showPreview: false,
-    blobFile: null,
   });
 
   const handleDocInfo = (link: string) => {
@@ -85,38 +81,11 @@ const FilePreview = ({
           </div>
           {/* INFO: Document Preview */}
           <div className="flex-1 flex h-full w-full overflow-y-auto">
-            {/* <Document */}
-            {/*   file={docInfo.link} */}
-            {/*   className="w-full" */}
-            {/*   onLoadError={(err) => alert(err)} */}
-            {/* > */}
-            {/*   <Page pageNumber={1} /> */}
-            {/* </Document> */}
-            <BlobProvider document={<div>Document</div>}>
-              {({ loading }) =>
-                loading ? (
-                  <div>Loading..</div>
-                ) : (
-                  <Document
-                    file={docInfo.link}
-                    loading={loading ? <div>Loading..</div> : null}
-                    className="w-full"
-                  >
-                    <Page
-                      loading={loading ? <div>Loading..</div> : null}
-                      pageNumber={1}
-                      error={"Error"}
-                    />
-                  </Document>
-                )
-              }
-            </BlobProvider>
-            {/* {getUrl(docInfo.link)} */}
-            {/* <iframe
+            <iframe
               src={`https://docs.google.com/viewer?url=${docInfo.link}&embedded=true`}
               width="100%"
               height="100%"
-              /> */}
+            />
           </div>
         </div>
       )}
