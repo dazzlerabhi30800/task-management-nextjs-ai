@@ -6,6 +6,7 @@ import DueDatePicker from "./DueDatePicker";
 import { SelectCategory } from "@/app/list/_components/SelectCategory";
 import FilePreview from "@/app/list/_components/FilePreview";
 import { useDropzone } from "react-dropzone";
+import dynamic from "next/dynamic";
 
 type props = {
   todoRef: React.RefObject<HTMLDivElement | null>;
@@ -23,6 +24,15 @@ const TaskFields = ({
   deleteFile,
 }: props) => {
   const { todoInfo, setTodoInfo } = useTodoStore((state) => state);
+
+  // NOTE: -->  file preview dynamically
+  const DynamicFilePreview = dynamic(
+    () => import("@/app/list/_components/FilePreview"),
+    {
+      ssr: false,
+      loading: () => <div>Loading...</div>,
+    },
+  );
 
   //NOTE: Handle Drop on drop-zone
   const onDrop = useCallback((acceptedFiles: File[]) => {
@@ -139,7 +149,11 @@ const TaskFields = ({
           </div>
         )}
         {/* NOTE: Files If the exists */}
-        <FilePreview todoFileArray={todoInfo.fileUrl} deleteFile={deleteFile} />
+        {/* <FilePreview todoFileArray={todoInfo.fileUrl} deleteFile={deleteFile} /> */}
+        <DynamicFilePreview
+          todoFileArray={todoInfo.fileUrl}
+          deleteFile={deleteFile}
+        />
       </div>
     </div>
   );
