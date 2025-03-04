@@ -82,7 +82,7 @@ const FilePreview = ({
           </div>
           {/* INFO: Document Preview */}
           <div className="flex-1 flex h-full w-full overflow-y-auto">
-            <Document file={docInfo.link}>
+            <Document file={docInfo.link} className="w-full">
               <Page pageNumber={1} />
             </Document>
             {/* <iframe
