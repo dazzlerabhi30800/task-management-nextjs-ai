@@ -65,7 +65,7 @@ const FilePreview = ({
       ))}
       {/* Document Viewer Comp */}
       {docInfo.showPreview && (
-        <div className="fixed top-0 left-0 h-full hidden md:flex flex-col gap-8 w-full bg-slate-100 p-3 md:p-5">
+        <div className="fixed top-0 left-0 h-full flex flex-col gap-8 w-full bg-slate-100 p-3 md:p-5">
           {/* INFO: close Button */}
           <div className="flex justify-between flex-wrap items-center w-full md:px-4">
             <Button onClick={() => window.open(docInfo.link)}>
