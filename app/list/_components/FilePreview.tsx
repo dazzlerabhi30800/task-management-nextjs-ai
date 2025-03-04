@@ -82,10 +82,14 @@ const FilePreview = ({
           {/* INFO: Document Preview */}
           <div className="flex-1 flex h-full w-full overflow-y-auto">
             <iframe
+              loading="lazy"
+              sandbox="allow-scripts allow-same-origin"
+              key={docInfo.link}
+              referrerPolicy="no-referrer"
               src={`https://docs.google.com/viewer?url=${docInfo.link}&embedded=true`}
               width="100%"
               height="100%"
-            />
+            ></iframe>
           </div>
         </div>
       )}
