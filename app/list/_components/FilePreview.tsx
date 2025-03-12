@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { file } from "@/public/store/TodoSlice";
-import { ArrowDown, X } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ImageComp from "./ImageComp";
 import PdfPreview from "./PdfPreview";
@@ -11,6 +11,7 @@ import { Document, Page } from "react-pdf";
 export type docs = {
   link: string;
   showPreview: boolean;
+  totalPages?: number;
 };
 
 const FilePreview = ({
@@ -23,7 +24,10 @@ const FilePreview = ({
   const [docInfo, setDocInfo] = useState<docs>({
     link: "",
     showPreview: false,
+    totalPages: 0,
   });
+
+  const [page, setPage] = useState(1);
 
   const handleDocInfo = (link: string) => {
     setDocInfo({
@@ -81,20 +85,35 @@ const FilePreview = ({
               <X size={20} />
             </Button>
           </div>
+          {/* Navigation Buttons */}
+          <div className="flex justify-between items-center md:px-5">
+            <Button
+              disabled={page === 1}
+              onClick={() => setPage((prev) => prev - 1)}
+            >
+              <ArrowLeft />
+            </Button>
+            <Button
+              disabled={page === docInfo.totalPages}
+              onClick={() => setPage((prev) => prev + 1)}
+            >
+              <ArrowRight />
+            </Button>
+          </div>
           {/* INFO: Document Preview */}
           <div className="flex-1 flex h-full w-full overflow-y-auto">
-            <Document file={docInfo.link} className="w-full">
-              <Page pageNumber={1} error={"Error"} />
+            <Document
+              file={docInfo.link}
+              onLoadSuccess={(data) =>
+                setDocInfo((prev) => ({
+                  ...prev,
+                  totalPages: data._pdfInfo.numPages,
+                }))
+              }
+              className="w-full"
+            >
+              <Page pageNumber={page} error={"Error"} />
             </Document>
-            {/* <iframe
-              loading="lazy"
-              sandbox="allow-scripts allow-same-origin"
-              key={docInfo.link}
-              referrerPolicy="no-referrer"
-              src={`https://docs.google.com/viewer?url=${docInfo.link}&embedded=true`}
-              width="100%"
-              height="100%"
-            ></iframe> */}
           </div>
         </div>
       )}
