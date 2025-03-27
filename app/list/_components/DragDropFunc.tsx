@@ -8,6 +8,7 @@ const DragDropFunc = () => {
   // NOTE: to check
   const handleDropResult = async (e: DropResult) => {
     const { source, destination, draggableId } = e;
+    if (!source || !destination) return;
 
     // NOTE: if the user dropping the task in same list
     if (source.droppableId === destination?.droppableId) {

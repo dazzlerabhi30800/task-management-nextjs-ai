@@ -104,6 +104,7 @@ const FilePreview = ({
           <div className="flex-1 flex h-full w-full overflow-y-auto">
             <Document
               file={docInfo.link}
+              loading={<div>Loading...</div>}
               onLoadSuccess={(data) =>
                 setDocInfo((prev) => ({
                   ...prev,
