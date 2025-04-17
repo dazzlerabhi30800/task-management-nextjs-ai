@@ -7,6 +7,7 @@ import { SelectCategory } from "@/app/list/_components/SelectCategory";
 // import FilePreview from "@/app/list/_components/FilePreview";
 import { useDropzone } from "react-dropzone";
 import dynamic from "next/dynamic";
+import Spinner from "@/app/list/_components/Spinner";
 
 type props = {
   todoRef: React.RefObject<HTMLDivElement | null>;
@@ -30,7 +31,7 @@ const TaskFields = ({
     () => import("@/app/list/_components/FilePreview"),
     {
       ssr: false,
-      loading: () => <div>Loading...</div>,
+      loading: () => <></>,
     },
   );
 
