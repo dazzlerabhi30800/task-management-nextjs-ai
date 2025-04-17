@@ -4,10 +4,8 @@ import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
 import DueDatePicker from "./DueDatePicker";
 import { SelectCategory } from "@/app/list/_components/SelectCategory";
-// import FilePreview from "@/app/list/_components/FilePreview";
 import { useDropzone } from "react-dropzone";
 import dynamic from "next/dynamic";
-import Spinner from "@/app/list/_components/Spinner";
 
 type props = {
   todoRef: React.RefObject<HTMLDivElement | null>;
